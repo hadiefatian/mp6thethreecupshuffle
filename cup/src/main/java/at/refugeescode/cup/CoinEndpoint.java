@@ -6,28 +6,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/cup")
 public class CoinEndpoint {
 
-    boolean coin;
+    private Boolean coin;
 
-    // get
-    // should be a boolean which says if it receives the coin:  yes/no
+    // A boolean which says if it receives the coin:  yes/no
     @GetMapping
-    boolean getCoin() {
+    Boolean getCoin() {
         return coin;
     }
 
-    // put
-    // boolean which says now it has the coin
+    // Boolean which says now it has the coin
     @PutMapping
-    boolean putCoin() {
+    void putCoin() {
         coin = true;
-         return coin;
     }
 
-    // delete
-    // to remove the coin ( if there is already the coin )
+    // Remove the coin ( if there is already the coin )
     @DeleteMapping
-    boolean removeCoin() {
+    void removeCoin() {
         coin = false;
-        return coin;
     }
 }
