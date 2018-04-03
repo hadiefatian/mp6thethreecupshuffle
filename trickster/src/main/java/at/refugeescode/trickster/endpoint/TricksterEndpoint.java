@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-//@RequestMapping("/play")
 public class TricksterEndpoint {
 
 
@@ -23,14 +22,11 @@ public class TricksterEndpoint {
         this.restTemplate = restTemplate;
     }
 
-    // Get request
-    // Put coin in a randomly chosen cup
     @GetMapping("/play")
     void play() {
         removeTheCoinFromTheCups();
         randomlyPutTheCoinInACup();
     }
-
 
     private void removeTheCoinFromTheCups() {
         ports.stream()
@@ -45,12 +41,11 @@ public class TricksterEndpoint {
         restTemplate.put(url, null);
     }
 
-
     // choose{number} --> We type the number in the REST client
     // check if the coin is in that cup
     // --> in order to do this you need the 3 methods in cup
     @GetMapping("/choose/{number}")
-    Boolean cupNumber(@PathVariable Integer number) {
+    Boolean choose(@PathVariable Integer number) {
         String port = ports.get(number - 1);
         String url = "http://localhost:" + port + "/cup";
         ResponseEntity<Boolean> answer = restTemplate.getForEntity(url, Boolean.class);
