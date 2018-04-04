@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,8 +36,9 @@ public class TricksterEndpoint {
     }
 
     private void randomlyPutTheCoinInACup() {
-        Collections.shuffle(ports);
-        String port = ports.get(0);
+        ArrayList<String> portNumbers = new ArrayList<>(ports);
+        Collections.shuffle(portNumbers);
+        String port = portNumbers.get(0);
         String url = "http://localhost:" + port + "/cup";
         restTemplate.put(url, null);
     }
